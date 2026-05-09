@@ -36,10 +36,10 @@ func MergeConfigFromFiles(files []*core.ConfigSource) (string, error) {
 func mergeConfigs(files []*core.ConfigSource) (*conf.Config, error) {
 	cf := &conf.Config{}
 	for i, file := range files {
-		errors.LogInfo(context.Background(), "Reading config: ", file)
+		errors.LogInfo(context.Background(), "설정 읽기: ", file)
 		r, err := confloader.LoadConfig(file.Name)
 		if err != nil {
-			return nil, errors.New("failed to read config: ", file).Base(err)
+			return nil, errors.New("설정 읽기 실패: ", file).Base(err)
 		}
 		decoder := ReaderDecoderByFormat[file.Format]
 		if file.Format == "json" && UseStrictJSON {
@@ -47,7 +47,7 @@ func mergeConfigs(files []*core.ConfigSource) (*conf.Config, error) {
 		}
 		c, err := decoder(r)
 		if err != nil {
-			return nil, errors.New("failed to decode config: ", file).Base(err)
+			return nil, errors.New("wuu ku guul daraystay inuu dejiyo qaabka: ", file).Base(err)
 		}
 		if i == 0 {
 			*cf = *c

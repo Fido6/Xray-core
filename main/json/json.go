@@ -22,14 +22,14 @@ func init() {
 			case cmdarg.Arg:
 				cf := &conf.Config{}
 				for i, arg := range v {
-					errors.LogInfo(context.Background(), "Reading config: ", arg)
+					errors.LogInfo(context.Background(), "設定を読み込んでいます: ", arg)
 					r, err := confloader.LoadConfig(arg)
 					if err != nil {
-						return nil, errors.New("failed to read config: ", arg).Base(err)
+						return nil, errors.New("設定ファイルの読み込みに失敗しました: ", arg).Base(err)
 					}
 					c, err := serial.DecodeJSONConfig(r)
 					if err != nil {
-						return nil, errors.New("failed to decode config: ", arg).Base(err)
+						return nil, errors.New("設定のデコードに失敗しました: ", arg).Base(err)
 					}
 					if i == 0 {
 						// This ensure even if the muti-json parser do not support a setting,
@@ -50,7 +50,7 @@ func init() {
 				}
 				return serial.LoadJSONConfig(v)
 			default:
-				return nil, errors.New("unknown type")
+				return nil, errors.New("알려지지 않은")
 			}
 		},
 	}))
