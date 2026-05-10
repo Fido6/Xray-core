@@ -1,0 +1,29 @@
+name: 删除 GHCR Untagged 镜像
+on:
+  release:
+    types: [ published ]
+  workflow_dispatch:
+
+jobs:
+  delete-untagged:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete all containers from package xray-core without tags
+        uses: Chizkiyahu/delete-untagged-ghcr-action@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository_owner: ${{ github.repository_owner }}
+          repository: ${{ github.repository }}
+          package_name: "xray-core"
+          untagged_only: true
+          owner_type: user
+
+      - name: Delete all containers from package xray-core without tags
+        uses: Chizkiyahu/delete-untagged-ghcr-action@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository_owner: ${{ github.repository_owner }}
+          repository: Fido6/vxht
+          package_name: "vxht"
+          untagged_only: true
+          owner_type: user
