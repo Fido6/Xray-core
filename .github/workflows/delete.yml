@@ -18,7 +18,7 @@ jobs:
           untagged_only: true
           owner_type: user
 
-      - name: Delete all containers from package xray-core without tags
+      - name: Delete all containers from package vxht without tags
         uses: Chizkiyahu/delete-untagged-ghcr-action@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
